@@ -1,6 +1,7 @@
 package test.main;
 /*
  *  5. 대입연산자 테스트
+ *  +=, -=, *=, /=, %=
  */
 public class MainClass05 {
 	public static void main(String[] args) {
