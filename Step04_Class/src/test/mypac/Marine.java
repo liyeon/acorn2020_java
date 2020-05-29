@@ -2,7 +2,7 @@ package test.mypac;
 
 public class Marine {
 	
-	//하나의 클래스에 nonstatic 필드와      static 필드ㅇ는 공존할수있다.
+	//하나의 클래스에 nonstatic 필드와      static 필드ㄴ는 공존할수있다.
 	//공격력을 저장하고 있는 static 필드
 	public static int attackPower=6;//속도
 	//에너지를 저장하고 있는 non static필드
