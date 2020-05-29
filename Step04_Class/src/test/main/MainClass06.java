@@ -20,14 +20,14 @@ public class MainClass06 {
 		System.out.println(a);//System은 import없이 사용 할 수 있는 클래스이다(string도).
 		
 		System.out.println();
-		//system 클래스 안에 있는 out이란느참조값 안에 있는 PrintStream ;
+		//system 클래스 안에 있는 out이라는참조값 안에 있는 PrintStream ;
 	
 		/* public class System{}
 		 *public static PrintStream out = new xxxx();
 		 *
 		 *
 		 */
-//		a.showInfo(); //null member 타입//a가 null이므로 NullPointerException 발생 문법상 오류 아님
+//		a.showInfo(); //null member 타입//a가 null이므로 NullPointerException 발생 | 문법상 오류 아님
 //		b.getArea();//b가 null이므로 NullPointerException 발생
 	}
 }
