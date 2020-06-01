@@ -20,7 +20,7 @@ public class MainClass06 {
 		System.out.println(a);// System은 import없이 사용 할 수 있는 클래스이다(string도).
 
 		System.out.println();
-		// system 클래스 안에 있는 out이라는참조값 안에 있는 PrintStream ;
+		// system 클래스 안에 있는 out이라는(필드)참조값 안에 있는 PrintStream(메소드 이름) 메소드를 ()(콜) 하는 표현식. ;
 
 		/*
 		 * public class System{} public static PrintStream out = new xxxx();
