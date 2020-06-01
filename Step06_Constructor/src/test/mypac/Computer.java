@@ -9,6 +9,7 @@ public class Computer {
 	//생성자
 	public Computer(Cpu cpu) {
 		this.cpu=cpu;
+		//(this = class명 )
 	}
 	//메소드(기능)
 	public void doGame() {
