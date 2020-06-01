@@ -1,7 +1,6 @@
 package test.main;
 
 import test.mypac.*;
-
 public class MainClass03 {
 
 	public static void main(String[] args) {
@@ -14,7 +13,7 @@ public class MainClass03 {
 		int a = 20;
 		String b = "김동현";
 		Car c = new Car();
-		
+		//지역변수에 담긴 값을 이용해서 메소드 호출하면서 전달 할 수도 있다.
 		obj1.setNum(a); //int num = a;
 		obj1.setName(b);//String name = b;
 		obj1.useCar(c); //Car car = c;

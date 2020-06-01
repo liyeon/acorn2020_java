@@ -15,6 +15,4 @@ public class MainClass02 {
 		b.drive();
 		c.drive();
 	}
-
-	
 }
