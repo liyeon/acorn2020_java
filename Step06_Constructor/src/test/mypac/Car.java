@@ -1,7 +1,7 @@
 package test.mypac;
 
 public class Car {
-	//필드
+	//필드(속성, 데이터의 저장소)
 	public String name;
 	
 	//String Type을 전달 받는 생성자생성자

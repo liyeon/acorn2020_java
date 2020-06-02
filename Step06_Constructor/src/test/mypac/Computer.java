@@ -7,6 +7,11 @@ public class Computer {
 	 */
 	public Cpu cpu;//선언만 하면 null이 들어있음.
 	//생성자
+	
+	//기본 생성자 (인자로 아무것도 전달받지 않는 생성자)
+	public Computer() {
+		System.out.println("기본 생성자가 호출되엇습니다.");
+	}
 	public Computer(Cpu cpu) {
 		this.cpu=cpu;
 		//(this = class명 )
