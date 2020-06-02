@@ -34,4 +34,3 @@ public class MainClass07 {
 		m1.showEnergy();
 		m2.showEnergy();
 	}
-}
