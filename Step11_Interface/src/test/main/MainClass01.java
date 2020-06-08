@@ -6,7 +6,7 @@ import test.mypac.Remocon;
 public class MainClass01 {
 	public static void main(String[] args) {
 		//인터페이스 type (부모 type)  
-		Remocon r1=new MyRemocon();
+		Remocon r1=new MyRemocon();//remocom type의 참조값얻어내기
 		//원래 class type 
 		MyRemocon r2=new MyRemocon();
 		
