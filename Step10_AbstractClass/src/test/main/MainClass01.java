@@ -16,7 +16,8 @@ public class MainClass01 {
 		//어떤 용도로 사용할지 몰라서 기반만 만들어 놓은 것. 
 		w1.prepare();
 		w1.attack();
-		
+		Weapon w2 = new MyWeapon();
+		w2.attack();
 		/*
 		 *  [ 추상클래스 (Abstract Class) ]
 		 *  

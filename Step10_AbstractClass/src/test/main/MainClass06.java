@@ -30,15 +30,22 @@ public class MainClass06 {
 			public void attack() {
 				System.out.println("그만 공격할랭");
 			}
+			public void fly() {
+				System.out.println("날아다닐랭");//Weapon이라는 설명서에 있는 메소드가 attack과 prepare두가지이고 추상클래스로 받아서 날아다닐 수 없다.
+			//자식클래스의 내부 클래스에서 지정한 메소드를 사용하려면 자식클래스를 타입으로 받아야한다.
+			}
 		}
 		
 		Weapon w2 = new OurWeapon();
 		useWeapon(w2);
+		//w2.fly();
+
 	}
 	
 	public static void useWeapon(Weapon w) {
 		w.prepare();
 		w.attack();
+
 	}
 
 }
