@@ -14,6 +14,7 @@ public class MyRemocon implements Remocon{//상속을 받은건 아니지만 Rem
 	public void down() {
 		System.out.println("무언가를 내려요");
 	}
+
 }
 
 

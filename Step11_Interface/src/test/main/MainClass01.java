@@ -17,6 +17,7 @@ public class MainClass01 {
 	public static void useRemocon(Remocon r) {
 		r.up();
 		r.down();
+		System.out.println(Remocon.COMPANY);
 	}
 }
 

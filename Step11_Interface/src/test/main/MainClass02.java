@@ -37,11 +37,11 @@ public class MainClass02 {
 
 			@Override
 			public void up() {
-				System.out.println("체널을 올려요");
+				System.out.println("채널을 올려요");
 			}
 			@Override
 			public void down() {
-				System.out.println("체널을 내려요");
+				System.out.println("채널을 내려요");
 			}
 		});
 		
