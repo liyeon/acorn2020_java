@@ -23,6 +23,8 @@ public class MainClass01 {
 		//names.remove(1);//1번방 삭제
 		//모든 방 깨끗이 삭제
 		//names.clear();;
+		names.contains(name3);//포함되어있는지?
+		System.out.println(names.contains(name2));
 		System.out.println(names);
 		for(int i=0;i<names.size();i++ ) {
 			System.out.println(names.get(i) + "이름입니다.");
