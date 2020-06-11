@@ -52,6 +52,7 @@ public class MainClass09 {
 		int i=((String)list.get(0).get("addr")).length();
 		System.out.println(i);
 		
+		
 	}
 
 }
