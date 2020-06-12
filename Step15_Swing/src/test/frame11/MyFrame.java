@@ -54,7 +54,7 @@ public class MyFrame extends JFrame implements ActionListener{
 		panel.add(diviBtn);
 		panel.add(inputMsg2);
 		panel.add(lab1);
-		lab1.setFont(new Font("Serif", Font.BOLD, 30));;
+		lab1.setFont(new Font("맑은 고딕", Font.BOLD, 30));;
 		//파일에 패널 색 지정하기
 		
 	
