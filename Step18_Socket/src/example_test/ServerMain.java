@@ -1,4 +1,4 @@
-package example5;
+package example_test;
 
 
 import java.io.BufferedReader;
@@ -13,16 +13,13 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 /*
  통신에 관련된 동작만
  */
 public class ServerMain {
 	//필드
-	static List<ServerThread> threadList = new ArrayList<>();//하나하나의 chatName이 들어있음
+	static List<ServerThread> threadList = new ArrayList<>();
 	//z클라이언트를 응대하는 thireadlist
 	
 	
@@ -36,10 +33,8 @@ public class ServerMain {
 			
 			while(true) {//클라이언트가 접속 해 올 때마다 새로운 소켓객채의 참조값이 나온다.
 				//무한루프를 돌면서 클라이언트의 소켓 접속을 기다린다.
-				System.out.println("클라이언트의 Socket 연결 요청을 대기합니다.");
 				Socket socket = serverSocket.accept();//받아들인다. //누가 접속 해 올때마다 받음 1번//접속한 클라이언트와 1대1로연결되어있는 것/누군가 접속해오기전까지 블로킹되어있음
 				//방금 접속한 클라이언트를 응대할 스레드르 시작시킨다.
-				System.out.println("클라이언트가 접속을 했습니다.");
 				ServerThread thread = new ServerThread(socket);//누가 접속해온것을 생성자의 인자로 스레드에 전달
 				thread.start();   
 				//생성하고 시작한 스레드의 참조값을 List에 저장하기
@@ -88,27 +83,6 @@ public class ServerMain {
 			}
 		}
 		
-		//참여자 목록을 얻어내서 Client에게 출력해주는 메소드
-		//{"type":"members", "list":[ "해골","원숭이"]}
-		public void sendChatNameList() {
-			JSONObject jsonObj = new JSONObject();
-			JSONArray jsonArr = new JSONArray();
-			//스레드 리스트에서 대화명을 순서대로 참조해서 JSONArray 객체에 순서대로 넣기
-			for(int i=0; i<threadList.size(); i++) {
-				ServerThread tmp = threadList.get(i);
-				jsonArr.put(i, tmp.chatName);
-			}
-			jsonObj.put("type", "member");
-			jsonObj.put("list", jsonArr);
-			
-			try {
-				sendMessage(jsonObj.toString());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}//catch
-			
-		}//sendChatNameList();
-		
 		//새로운 작업단위가 시작되는 run()메소드
 		@Override
 		public void run() {//스레드가 시작됨
@@ -149,32 +123,24 @@ public class ServerMain {
 						String chatName = jsonObj.getString("name");
 						this.chatName=chatName;//스레드객체의필드에대화명 저장(이들어있음)
 						//왜 저장하냐면? 접속이 끊기면 누가 나갔는지 알기 위해 누가 나갔는지 읽어내어
-						//대화명 목록을 보내준다.
-						sendChatNameList();
- 					}//if
+ 					}else if(type.equals("msg")){
+						
+					}
 					
 					//클라이언트에게 동일한 메세지를 보내는 메소드를 호출한다.
 					sendMessage(msg);
 					if(msg==null) {
 						break;
-					}//if
-				}//while종료
+					}
+				}
 				
 			} catch (Exception e) {
 				
 			}finally {
 				//접속이 끊겨ㅕ서 종료되는 스레드는 list에서 제거한다.
 				threadList.remove(this);//참조값으로 찾아서 삭제하는 기능//참조값 안에 있는 방을 찾아서 삭제해줘랑
-				
 				//this는 ServerThread로 생성된 객체
 					try {
-						//this가 퇴장한다고 메세지를 보낸다.
-						JSONObject jsonObj = new JSONObject();
-						jsonObj.put("type", "out");
-						jsonObj.put("name", this.chatName);
-						sendMessage(jsonObj.toString());
-						//대화명 목록을 보내준다.
-						sendChatNameList();
 						if(socket!=null)socket.close();
 					} catch (IOException e) {}
 			}//finally
