@@ -80,8 +80,8 @@ public class MyFrame extends JFrame
 		model.addElement("김구라");
 		model.addElement("해골");
 		model.addElement("원숭이");
-		
-		
+		model.addElement("덩어리");
+		model.addElement("원숭이");
 		
 		
 		//목록에 모델 연결하기

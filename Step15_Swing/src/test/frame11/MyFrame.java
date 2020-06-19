@@ -2,8 +2,6 @@ package test.frame11;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,126 +12,108 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
-
-public class MyFrame extends JFrame implements ActionListener{
-	JTextField inputMsg;
-	JTextField inputMsg2;
-	JLabel lab1;
+public class MyFrame extends JFrame implements ActionListener {
+	//필드
+	JTextField tf_num1, tf_num2;
+	JLabel label_result;
+	
+	// Default 생성자
 	public MyFrame() {
-		//문자열 한줄을 입력할수있는 JTextField
-		inputMsg = new JTextField(20);
-		inputMsg2 = new JTextField(20);
-		
-		JButton addBtn = new JButton("+");
-		addBtn.addActionListener(this);
-		JButton subBtn = new JButton("-");
-		subBtn.addActionListener(this);
+		// 프레임의 레이아웃 법칙 설정하기(프레임의 메소드를 불러온다.) 동서남북 센터로 구역을 나눌 수 있다.
+		setLayout(new BorderLayout());
+
+		// JPanel
+		JPanel topPanel = new JPanel();
+		topPanel.setBackground(Color.YELLOW);
+		// Panel을 북쪽에 배치하기
+		add(topPanel, BorderLayout.CENTER);
+
+		// JTextField 객체를 만들어서 Jpanel에 추가하기.
+		tf_num1 = new JTextField(10);
+		topPanel.add(tf_num1);
+
+		// 기능 버튼 객체를 만들어서 Jpanel에 추가하기.
+		JButton plusBtn = new JButton("+");
+		JButton minusBtn = new JButton("-");
 		JButton multiBtn = new JButton("*");
+		JButton divideBtn = new JButton("/");
+		plusBtn.setBackground(Color.CYAN);
+		minusBtn.setBackground(Color.ORANGE);
+		multiBtn.setBackground(Color.PINK);
+		divideBtn.setBackground(Color.GREEN);
+		topPanel.add(plusBtn);
+		topPanel.add(minusBtn);
+		topPanel.add(multiBtn);
+		topPanel.add(divideBtn);
+		//두번째 JTExtField 만들어서 페널에 추가하기.
+		tf_num2 = new JTextField(10);
+		topPanel.add(tf_num2);
+		//JLabel
+		JLabel label1=new JLabel("=");
+		label_result = new JLabel("0");
+		//패널에 레이블 추가하기.
+		topPanel.add(label1);
+		topPanel.add(label_result);
+		//버튼에 리스너 등록하기
+		plusBtn.addActionListener(this);
+		minusBtn.addActionListener(this);
 		multiBtn.addActionListener(this);
-		JButton diviBtn = new JButton("/");
-		diviBtn.addActionListener(this);
-		add(addBtn);
-		add(subBtn);
-		add(multiBtn);
-		add(diviBtn);
-		
-		
-		//JLabel 객체 생성
-		lab1=new JLabel(" = ?");
-		
-		//JPanel 객체 생성
-		JPanel panel= new JPanel();
-		panel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		add(panel);
-		//JPanel에 UI추가하고 
-		panel.add(inputMsg);
-		panel.add(addBtn);
-		panel.add(subBtn);
-		panel.add(multiBtn);
-		panel.add(diviBtn);
-		panel.add(inputMsg2);
-		panel.add(lab1);
-		lab1.setFont(new Font("맑은 고딕", Font.BOLD, 30));;
-		//파일에 패널 색 지정하기
-		
-	
+		divideBtn.addActionListener(this);
+		//버튼에 액션 command 지정하기
+		plusBtn.setActionCommand("plus");
+		minusBtn.setActionCommand("minus");
+		multiBtn.setActionCommand("multi");
+		divideBtn.setActionCommand("divide");
 	}
-	
+
 	public static void main(String[] args) {
-		//MyFrame 클래스를 이용해서 객체를 생성하고 참조값을 지역 변수 frame에 담기
+		// MyFrame 클래스를 이용해서 객체를 생성하고 참조값을 지역 변수 frame에 담기
 		MyFrame frame = new MyFrame();
-		//프레임의 제목 설정
-		frame.setTitle("나의 프레임");
-		//프레임을 닫으면 자동으로 프로세스가 종료되도록한다.
+		// 프레임의 제목 설정
+		frame.setTitle("계산기");
+		// 프레임을 닫으면 자동으로 프로세스가 종료되도록한다.
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 500, 500);
 		frame.setVisible(true);
-		
-	}
 
+	}
+	//ActionListener 인터페이스를 구현해서 강제 오버라이드된 메서드
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
+		try{
+		//눌러진 버튼의 command 읽어오기
 		String command = e.getActionCommand();
-		double msg = Double.parseDouble(inputMsg.getText());
-		double msg2 = Double.parseDouble(inputMsg2.getText());
-			if(command.equals("+")){
-				//읽어온 문자열을 JLabel에 추가하기
-				double result = msg+msg2;
-				lab1.setText(""+result);
-				//입력창 문자열 삭제하기
-				inputDelete();
-			}else if(command.equals("-")){
-				//읽어온 문자열을 JLabel에 추가하기
-				double result = msg-msg2;
-				lab1.setText(""+result);
-				//입력창 문자열 삭제하기
-				inputDelete();
-				
-			}else if(command.equals("*")){
-				//읽어온 문자열을 JLabel에 추가하기
-				double result = msg*msg2;
-				lab1.setText(""+result);
-				//입력창 문자열 삭제하기
-				inputDelete();
-			}else if(command.equals("/")){
-				//읽어온 문자열을 JLabel에 추가하기
-				double result = msg/msg2;
-				lab1.setText(""+result);
-				if(result == Double.POSITIVE_INFINITY) {
-					zeroTry();
-				}else if(result == Double.NaN) {
-					zeroTry();
-				}
-				//입력창 문자열 삭제하기
-				inputDelete();
-				
-			}
-		}catch(NumberFormatException nfe) {
-			JOptionPane.showMessageDialog(MyFrame.this, "숫자 형식에 맞게 입력해주세요");
-			nfe.printStackTrace();
-		}	
+		//JTextField에 입력한 문자열을 읽어와서 숫자(실수)로 바꿔준다.
+		double num1 = Double.parseDouble(tf_num1.getText());
+		double num2 = Double.parseDouble(tf_num2.getText());
+		double result=0;
+		if(command.equals("plus")) {
+			result = num1 + num2;
+		}else if(command.equals("minus")) {
+			result = num1 - num2;
+		}else if(command.equals("multi")) {
+			result = num1 * num2;
+			
+		}else if(command.equals("divide")) {
+			result = num1 / num2;
+			if(Double.isInfinite(result)) {
+				zeroTry();
+			}else if(Double.isNaN(result)) {
+				zeroTry();
+			}//nan 예외처리 
+		}//나누기 종료
 		
-		
-	}//action종료
+		//결과값 JLabel에 출력하기
+		label_result.setText(Double.toString(result));
+		}catch(Exception exe) {
+			JOptionPane.showMessageDialog(this, "숫자 형식에 맞게 입력해주세요");
+			exe.printStackTrace();
+		};//catch 종료
+	}//actionPerformed 종료
 	
-//
-//	try{}catch(NumberFormatException nfe) {
-//		JOptionPane.showMessageDialog(MyFrame.this, "숫자 형식에 맞게 입력해주세요");
-//		nfe.printStackTrace();
-//	}
-//	
-	
-	public void inputDelete() {
-		inputMsg.setText("");
-		inputMsg2.setText("");
-	}
 	public void zeroTry() {
-		lab1.setText("0으로는 나눌 수 없습니다.");
-		JOptionPane.showMessageDialog(MyFrame.this, "0으로는 나눌 수 없습니다.");
-		
+		label_result.setText("0으로는 나눌 수 없습니다.");
+		JOptionPane.showMessageDialog(this, "0으로는 나눌 수 없습니다.");
 	}
-	//java.lang.NumberFormatException
 	
-}
+}//void main 종료

@@ -36,7 +36,6 @@ public class MyFrame extends JFrame implements ActionListener{
 		frame.setBounds(100, 100, 500, 500);
 		frame.setVisible(true);
 		JButton btn= new JButton();
-		
 	}
 	//ActionListener 인터페이스를 구현해서 강제 오버라이드된 메소드
 	@Override
